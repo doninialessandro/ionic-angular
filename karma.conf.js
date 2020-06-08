@@ -28,7 +28,7 @@ module.exports = function (config) {
     browsers: [process.env.CI ? 'ChromeCI' : 'Chrome'],
     customLaunchers: {
       ChromeCI: {
-        base: 'ChromiumHeadless',
+        base: 'ChromeHeadless',
         flags: [
           '--no-sandbox',
           '--disable-setuid-sandbox',
@@ -37,6 +37,6 @@ module.exports = function (config) {
         ],
       },
     },
-    singleRun: false,
+    singleRun: process.env.CI ? true : false,
   });
 };
