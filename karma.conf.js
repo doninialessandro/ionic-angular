@@ -25,7 +25,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: [process.env.IS_CIRCLE ? 'ChromeCI' : 'Chrome'],
+    browsers: [process.env.CI ? 'ChromeCI' : 'Chrome'],
     customLaunchers: {
       ChromeCI: {
         base: 'ChromiumHeadless',

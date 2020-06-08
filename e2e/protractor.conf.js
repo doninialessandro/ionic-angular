@@ -3,7 +3,7 @@
 
 const { SpecReporter } = require('jasmine-spec-reporter');
 
-const chromeArgs = !!process.env.IS_CIRCLE
+const chromeArgs = !!process.env.CI
   ? [
       '--test-type',
       '--headless',
