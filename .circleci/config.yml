@@ -5,15 +5,9 @@ executors:
     docker:
       - image: circleci/node:latest
         environment:
-          CHROME_BIN: /usr/bin/google-chrome
+          IS_CIRCLE: 'true'
 
 jobs:
-  test:
-    executor: node
-    steps:
-      - checkout
-      - run: npm install
-      - run: npm run test:ci
   build:
     executor: node
     steps:
@@ -21,11 +15,18 @@ jobs:
       - run: npm install
       - run: npm run build
 
+  test:
+    executor: node
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run test
+
 workflows:
   version: 2
   test:
     jobs:
-      - test
-      - build:
+      - build
+      - test:
           requires:
-            - test
+            - build

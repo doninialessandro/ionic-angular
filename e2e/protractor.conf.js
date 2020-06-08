@@ -3,13 +3,25 @@
 
 const { SpecReporter } = require('jasmine-spec-reporter');
 
+const chromeArgs = !!process.env.IS_CIRCLE
+  ? [
+      '--test-type',
+      '--headless',
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-gpu',
+      '--disable-software-rasterizer', // https://stackoverflow.com/questions/50143413/errorgpu-process-transport-factory-cc1007-lost-ui-shared-context-while-ini],
+    ]
+  : ['--test-type'];
+
 exports.config = {
   allScriptsTimeout: 11000,
-  specs: [
-    './src/**/*.e2e-spec.ts'
-  ],
+  specs: ['./src/**/*.e2e-spec.ts'],
   capabilities: {
-    'browserName': 'chrome'
+    browserName: 'chrome',
+    chromeOptions: {
+      args: chromeArgs,
+    },
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
@@ -17,12 +29,14 @@ exports.config = {
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,
-    print: function() {}
+    print: function () {},
   },
   onPrepare() {
     require('ts-node').register({
-      project: require('path').join(__dirname, './tsconfig.json')
+      project: require('path').join(__dirname, './tsconfig.json'),
     });
-    jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
-  }
+    jasmine
+      .getEnv()
+      .addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
+  },
 };
