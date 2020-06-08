@@ -1,0 +1,38 @@
+version: 2.1
+
+executors:
+  node:
+    docker:
+      - image: circleci/node:latest
+  browsers:
+    docker:
+      - image: circleci/node:browsers
+
+jobs:
+  lint:
+    executor: node
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run lint
+  test:
+    executor: browsers
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run e2e
+      - run: npm run test
+  build:
+    executor: node
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run build
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - lint
+      - test
+      - build
