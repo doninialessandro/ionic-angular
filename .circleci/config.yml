@@ -6,18 +6,11 @@ executors:
       - image: circleci/node:latest
 
 jobs:
-  lint:
-    executor: node
-    steps:
-      - checkout
-      - run: npm install
-      - run: npm run lint
   test:
     executor: node
     steps:
       - checkout
       - run: npm install
-      - run: npm run e2e
       - run: npm run test
   build:
     executor: node
@@ -30,6 +23,7 @@ workflows:
   version: 2
   test:
     jobs:
-      - lint
       - test
-      - build
+      - build:
+          requires:
+            - test
