@@ -74,7 +74,7 @@ jobs:
             - ./node_modules
           key: v1-npm-deps-{{ checksum "package-lock.json" }}
 
-      - run: npx semantic-release --branches develop master
+      - run: npx semantic-release --branches chore/setup develop master
 
 workflows:
   version: 2
