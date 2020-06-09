@@ -89,4 +89,4 @@ workflows:
     jobs:
       - release:
           requires:
-            - build_and_test
+            - test
