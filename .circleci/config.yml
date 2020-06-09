@@ -3,6 +3,9 @@ version: 2.1
 executors:
   node:
     docker:
+      - image: circleci/node:latest
+  browser:
+    docker:
       - image: circleci/node:latest-browsers
 
 jobs:
@@ -10,6 +13,7 @@ jobs:
     executor: node
     steps:
       - checkout
+
       - restore_cache:
           keys:
             # Find a cache corresponding to this specific package-lock.json checksum
@@ -17,17 +21,21 @@ jobs:
             - v1-npm-deps-{{ checksum "package-lock.json" }}
             # Find the most recently generated cache used from any branch
             - v1-npm-deps-
+
       - run: npm install
+
       - save_cache:
           paths:
             - ./node_modules
           key: v1-npm-deps-{{ checksum "package-lock.json" }}
+
       - run: npm run build
 
   test:
-    executor: node
+    executor: browser
     steps:
       - checkout
+
       - restore_cache:
           keys:
             # Find a cache corresponding to this specific package-lock.json checksum
@@ -35,13 +43,38 @@ jobs:
             - v1-npm-deps-{{ checksum "package-lock.json" }}
             # Find the most recently generated cache used from any branch
             - v1-npm-deps-
+
       - run: npm install
+
       - save_cache:
           paths:
             - ./node_modules
           key: v1-npm-deps-{{ checksum "package-lock.json" }}
+
       - run: npm run test
       - run: npm run e2e
+
+  release:
+    executor: node
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            # Find a cache corresponding to this specific package-lock.json checksum
+            # when this file is changed, this key will fail
+            - v1-npm-deps-{{ checksum "package-lock.json" }}
+            # Find the most recently generated cache used from any branch
+            - v1-npm-deps-
+
+      - run: npm install
+
+      - save_cache:
+          paths:
+            - ./node_modules
+          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+
+      - run: npx semantic-release --dry-run --branches develop
 
 workflows:
   version: 2
@@ -51,3 +84,9 @@ workflows:
       - test:
           requires:
             - build
+
+  release:
+    jobs:
+      - release:
+          requires:
+            - build_and_test
