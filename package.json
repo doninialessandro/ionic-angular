@@ -1,6 +1,7 @@
 {
   "name": "ionic-angular",
-  "version": "0.0.1",
+  "version": "0.0.0-semantically-released",
+  "description": "An Ionic project",
   "author": "Alessandro Donini",
   "scripts": {
     "ng": "ng",
@@ -60,6 +61,5 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
-  },
-  "description": "An Ionic project"
+  }
 }
