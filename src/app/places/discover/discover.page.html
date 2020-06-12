@@ -1,5 +1,11 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <!-- <ion-button (click)="onOpenMenu()">
+        Open
+      </ion-button> -->
+    </ion-buttons>
     <ion-title>Discover Places</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,7 +21,7 @@
               >{{ loadedPlaces[0].price | currency }} / Night</ion-card-subtitle
             >
           </ion-card-header>
-          <ion-img [src]="loadedPlaces[0].imgUrl"></ion-img>
+          <ion-img [src]="loadedPlaces[0].imageUrl"></ion-img>
           <ion-card-content>
             <p>{{ loadedPlaces[0].description }}</p>
           </ion-card-content>
@@ -26,6 +32,7 @@
               [routerLink]="[
                 '/',
                 'places',
+                'tabs',
                 'discover',
                 loadedPlaces[0].id
               ]"
@@ -41,11 +48,11 @@
         <ion-list>
           <ion-item
             *ngFor="let place of loadedPlaces.slice(1)"
-            [routerLink]="['/', 'places', 'discover', place.id]"
+            [routerLink]="['/', 'places', 'tabs', 'discover', place.id]"
             detail
           >
             <ion-thumbnail slot="start">
-              <ion-img [src]="place.imgUrl"></ion-img>
+              <ion-img [src]="place.imageUrl"></ion-img>
             </ion-thumbnail>
             <ion-label>
               <h2>{{ place.title }}</h2>
