@@ -44,13 +44,6 @@ jobs:
             # Find the most recently generated cache used from any branch
             - v1-npm-deps-
 
-      - run: npm install
-
-      - save_cache:
-          paths:
-            - ./node_modules
-          key: v1-npm-deps-{{ checksum "package-lock.json" }}
-
       - run: npm run test
       - run: npm run e2e
 
@@ -67,13 +60,6 @@ jobs:
             # Find the most recently generated cache used from any branch
             - v1-npm-deps-
 
-      - run: npm install
-
-      - save_cache:
-          paths:
-            - ./node_modules
-          key: v1-npm-deps-{{ checksum "package-lock.json" }}
-
       - run: npx semantic-release --branches develop
 
 workflows:
@@ -81,9 +67,9 @@ workflows:
   build-test-release:
     jobs:
       - build
-      - test:
-          requires:
-            - build
+      # - test:
+      #     requires:
+      #       - build
       - release:
           requires:
-            - test
+            - build
