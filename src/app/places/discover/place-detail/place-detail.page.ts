@@ -37,9 +37,6 @@ export class PlaceDetailPage implements OnInit {
   }
 
   onBookPlace() {
-    // this.router.navigateByUrl('/places/tabs/discover');
-    // this.navCtrl.navigateBack('/places/tabs/discover');
-    // this.navCtrl.pop();
     this.actionSheetCtrl
       .create({
         header: 'Choose an Action',
@@ -72,7 +69,7 @@ export class PlaceDetailPage implements OnInit {
     this.modalCtrl
       .create({
         component: CreateBookingComponent,
-        componentProps: { selectedPlace: this.place },
+        componentProps: { selectedPlace: this.place, selectedMode: mode },
       })
       .then((modalEl) => {
         modalEl.present();
