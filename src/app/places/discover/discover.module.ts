@@ -10,8 +10,8 @@ import { DiscoverPage } from './discover.page';
 const routes: Routes = [
   {
     path: '',
-    component: DiscoverPage
-  }
+    component: DiscoverPage,
+  },
 ];
 
 @NgModule({
@@ -19,8 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  declarations: [DiscoverPage]
+  declarations: [DiscoverPage],
 })
 export class DiscoverPageModule {}
