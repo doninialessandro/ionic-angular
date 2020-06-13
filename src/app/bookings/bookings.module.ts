@@ -10,8 +10,8 @@ import { BookingsPage } from './bookings.page';
 const routes: Routes = [
   {
     path: '',
-    component: BookingsPage
-  }
+    component: BookingsPage,
+  },
 ];
 
 @NgModule({
@@ -19,8 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  declarations: [BookingsPage]
+  declarations: [BookingsPage],
 })
 export class BookingsPageModule {}

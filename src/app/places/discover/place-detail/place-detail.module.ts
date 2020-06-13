@@ -11,8 +11,8 @@ import { CreateBookingComponent } from '../../../bookings/create-booking/create-
 const routes: Routes = [
   {
     path: '',
-    component: PlaceDetailPage
-  }
+    component: PlaceDetailPage,
+  },
 ];
 
 @NgModule({
@@ -20,9 +20,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
   declarations: [PlaceDetailPage, CreateBookingComponent],
-  entryComponents: [CreateBookingComponent]
+  entryComponents: [CreateBookingComponent],
 })
 export class PlaceDetailPageModule {}

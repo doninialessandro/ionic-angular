@@ -10,8 +10,8 @@ import { AuthPage } from './auth.page';
 const routes: Routes = [
   {
     path: '',
-    component: AuthPage
-  }
+    component: AuthPage,
+  },
 ];
 
 @NgModule({
@@ -19,8 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  declarations: [AuthPage]
+  declarations: [AuthPage],
 })
 export class AuthPageModule {}

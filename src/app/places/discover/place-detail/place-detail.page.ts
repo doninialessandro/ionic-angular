@@ -41,6 +41,7 @@ export class PlaceDetailPage implements OnInit, OnDestroy {
         this.navCtrl.navigateBack('/places/tabs/discover');
         return;
       }
+
       this.placeSub = this.placesService
         .getPlace(paramMap.get('placeId'))
         .subscribe((place) => {
