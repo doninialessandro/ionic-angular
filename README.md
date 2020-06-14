@@ -31,7 +31,7 @@ Runs the app in the development mode.<br /> Open
 The page will reload if you make edits.<br /> You will also see errors in the console.
 
 **IMPORTANT**
-This application used behind the scenes [Firebase](https://firebase.google.com/). To test it be sure to have a Firebase account, create a Realtime Database, add the following rules to your DB:
+This application use behind the scenes [Firebase](https://firebase.google.com/). To test it be sure to have a Firebase account, create a Realtime Database, add the following rules to your DB (from Firebase admin interface go to Development/Database/Rules):
 
 ```json
 "bookings":{
@@ -39,7 +39,7 @@ This application used behind the scenes [Firebase](https://firebase.google.com/)
 }
 ```
 
-and last but not least export an `API_URL` env variable (in the same env where you will run `npm start`) with your db adress e.g.:
+and last but not least export an `API_URL` env variable (in the same env where you will run `npm start`) with your db address e.g.:
 
 ```
 export API_URL=https://your-firebase-db-project-00a00.firebaseio.com
