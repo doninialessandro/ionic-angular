@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   apiUrl: window['_env_']['API_URL'],
+  googleMapsAPIKey: window['_env_']['GOOGLE_MAPS_KEY'],
 };
 
 /*
