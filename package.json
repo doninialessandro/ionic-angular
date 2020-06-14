@@ -5,7 +5,7 @@
   "author": "Alessandro Donini",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "chmod +x ./env.sh && ./env.sh && ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
